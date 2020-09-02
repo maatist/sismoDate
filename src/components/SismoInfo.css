@@ -1,0 +1,14 @@
+.unit-sismo {
+    border: 1px solid grey;
+    background-color: lightgrey;
+    margin: 10px;
+    min-width: 300px;
+    padding: 10px;
+    border-radius: 20px;
+    
+}
+
+h4 {
+    display: inline;
+    
+}
