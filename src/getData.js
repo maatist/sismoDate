@@ -1,5 +1,6 @@
 import Axios from 'axios';
 
+
 const cheerio = require('cheerio');
 const { regiones } = require('./regiones');
 
@@ -37,14 +38,12 @@ export const getData = async(reg, fecha) => {
     
             const tds = $(element).find("td");
             
-            const fechaLocal = $(tds[0]).text();
+            let fechaLocal = $(tds[0]).text();
             const latitud = $(tds[2]).text();
             const longitud = $(tds[3]).text();
             const profundidad = $(tds[4]).text();
             const magnitud = $(tds[5]).text();
             const lugar = $(tds[6]).text();
-            
-            
 
             comunas.forEach( l => {
                 if(lugar.includes(l) & reg === region) {
