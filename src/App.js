@@ -15,6 +15,8 @@ const { regiones } = require('./regiones');
 
 function App() {
 
+  let clase = "centro"
+
   const [ formValues, handleInputChange] = useForm({
     fecha: '',
     region: ''
@@ -33,6 +35,10 @@ function App() {
     
   }
 
+  if (submitFlag) {
+    clase = ""
+  }
+
   const {data: sismo, loading} = useFetchData(region, fecha);
  
   
@@ -41,7 +47,7 @@ function App() {
     <div>
       
       <form
-        className="formulario"
+        className={"formulario " + clase}
         onSubmit={submitFecha}
       >
       <label>Fecha: </label>
@@ -90,26 +96,27 @@ function App() {
 
       {loading && <h1>Cargando</h1>}
 
-
-    <hr />
-    {
-      submitFlag &&
-      <h3>Cantidad de sismos: {sismo.length}</h3>
-    }
-
-    <ol className="tarjeta">
-
-      { submitFlag &&
-        sismo.map( sis => 
-          <SismoInfo 
-            key={ sis.fechaLocal}
-            {...sis}
-          />
-        ) 
+    <div className={clase}>
+      <hr />
+      {
+        submitFlag &&
+        <h3>Cantidad de sismos: {sismo.length}</h3>
       }
 
+      <ol className="tarjeta">
 
-    </ol>
+        { submitFlag &&
+          sismo.map( sis => 
+            <SismoInfo 
+              key={ sis.fechaLocal}
+              {...sis}
+            />
+          ) 
+        }
+
+
+      </ol>
+    </div>
 
 
     </div>
